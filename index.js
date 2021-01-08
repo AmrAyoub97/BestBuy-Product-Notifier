@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
     pass: process.env.SMTP_PASS,
   },
 });
-async function getProductState(productId: string) {
+async function getProductState(productId) {
   try {
     const page_response = await axios.get(
       `https://api.bestbuy.com/v1/products/${productId}.json?apiKey=${process.env.BESTBUY_API_KEY}`
