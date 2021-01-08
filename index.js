@@ -17,6 +17,8 @@ async function getProductState(productId) {
       `https://api.bestbuy.com/v1/products/${productId}.json?apiKey=${process.env.BESTBUY_API_KEY}`
     );
     const product_details = page_response.data;
+    console.log("cehcking product:id", productId);
+    console.log("cehcking product:name", product_details.name);
     if (product_details.orderable === "Available") {
       await transporter.sendMail({
         from: process.env.SMTP_USER,
