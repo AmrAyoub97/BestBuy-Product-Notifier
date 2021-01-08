@@ -1,5 +1,5 @@
-import axios from "axios";
-import * as nodemailer from "nodemailer";
+const axios = require("axios");
+const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
@@ -32,9 +32,10 @@ async function getProductState(productId) {
     console.log(error);
   }
 }
-export function CheckBestBuyProducts() {
+async function CheckBestBuyProducts() {
   const productIds = process.env.BESTBUY_PRODUCTS_IDS.split(",");
-  for (const productId of productIds) {
+  for await (const productId of productIds) {
     getProductState(productId);
   }
 }
+CheckBestBuyProducts();
